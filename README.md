@@ -1,4 +1,4 @@
-# Facility Location Optimization for Dual-Capacity Drone Fleet in Last-Mile Delivery Operations
+# Combinatorial Optimization: Facility Location Optimization for Dual-Capacity Drone Fleet in Last-Mile Delivery Operations
 ## Problem Description:
 
 The goal is to determine the optimal locations for facilities (e.g., drone hubs, recharging stations) to serve customer demand points effectively. Additionally, this problem involves choosing the appropriate type of drone for each delivery, balancing between **small-capacity drones** (for lighter, shorter deliveries) and **large-capacity drones** (for heavier loads or longer distances).
