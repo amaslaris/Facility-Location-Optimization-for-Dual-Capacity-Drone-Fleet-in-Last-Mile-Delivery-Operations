@@ -1,89 +1,73 @@
-**Facility Location Optimization for Dual-Capacity Drone Fleet in Last-Mile Delivery Operations**
-
-**Problem Description:**
+# Facility Location Optimization for Dual-Capacity Drone Fleet in Last-Mile Delivery Operations
+## Problem Description:
 
 The goal is to determine the optimal locations for facilities (e.g., drone hubs, recharging stations) to serve customer demand points effectively. Additionally, this problem involves choosing the appropriate type of drone for each delivery, balancing between **small-capacity drones** (for lighter, shorter deliveries) and **large-capacity drones** (for heavier loads or longer distances).
 
-**Objective:**
+## Objective:
 
 Minimize the total cost, which includes:
 
 1. **Facility setup and operational costs.**
-1. **Travel and operational costs** for each type of drone.
-1. **Drone selection costs** based on the load and distance requirements for each customer.
+2. **Travel and operational costs** for each type of drone.
+3. **Drone selection costs** based on the load and distance requirements for each customer.
 
-**Constraints:**
+## Constraints:
 
 1. **Facility Assignment Constraint**: Each customer must be served by one facility and one type of drone.
-1. **Facility Capacity Constraint**: Each facility has a total capacity limit for the number of drones it can support, with each type of drone occupying a different amount of space.
-1. **Assignment Activation Constraint**: A customer can only be assigned to a facility that is open.
-1. **Payload Capacity Constraint**: The assigned drone type must be able to carry the package weight.
-1. **Distance/Range Constraint**: Small-capacity drones can only serve customers within range Rs , and large-capacity drones within range Rl.
+2. **Facility Capacity Constraint**: Each facility has a total capacity limit for the number of drones it can support, with each type of drone occupying a different amount of space.
+3. **Assignment Activation Constraint**: A customer can only be assigned to a facility that is open.
+4. **PayloadCapacityConstraint**:The assigned drone type must be able to carry the package weight.
+5. **Distance/RangeConstraint**: Small-capacity drones can only serve customers within range $R_{s}$, and large capacity drones within range $R_{l}$.
 
-**Parameters:**
 
-- **:** Potential facility locations # (Set)
-- **:** Customer locations # (Set)
-- **:** Small capacity drones # (Set)
-- **:** Large capacity drones # (Set)
-- **:** Distance between facility i and customer j (  ∈  ,  ∈  ) # (2d Array)
-- **:** Fixed cost of operating facility i ( ∈  ) # (Array)
-- **:** Operational cost for serving customer j from facility i with an **S**-type drone # (2d Array)
-- **:** Operational cost for serving customer j from facility i with an **L**-type drone # (2d Array)
-- **:** The capacity of each facility, the maximum number of drones it can
+## Parameters:
+$𝐹$ : Potential facility locations **(Set)** <br>
+$𝐶$ : Customer locations **(Set)** <br>
+$D_{𝑠}$ : Small capacity drones **(Set)** <br>
+$𝐷_{𝑙}$ : Large capacity drones **(Set)** <br>
+$d_{𝑖𝑗}$ : Distance between facility i and customer j, $𝑖\in𝐹$ & $𝑗\in𝐶$ **(2D Array)** <br>
+$𝑓_{𝑖}$ : Fixed cost of operating facility i, $𝑖\in𝐹$ **(Array)** <br>
+$𝑐_{𝑖𝑗}^s$ : Operational cost for serving customer j from facility i with an S-type drone **(2D Array)** <br>
+$𝑐_{𝑖j}^l$ : Operational cost for serving customer j from facility i with an L-type drone **(2D Array)** <br>
+$𝐾_{𝑖}$ : The capacity of each facility, the maximum number of drones it can support **(Array)** <br>
+$𝑊_{𝑗}$ : Weight of customer’s j package **(Array)** <br>
+$𝑤_{𝑠}$ : Weight factor for S-type drones for the facilities **(Constant)** <br>
+$𝑤_{𝑙}$ : Weight factor for L-type drones for the facilities **(Constant)** <br>
+$𝑃_{𝑠}$ : Payload capacity of S-type drones **(Constant)** <br>
+$𝑃_{𝑙}$ : Payload capacity of L-type drones **(Constant)** <br>
+$𝑅_{𝑠}$ : Max Range of S-type drones **(Constant)** <br>
+$𝑅_{𝑙}$ : Max Range of L-type drones **(Constant)** <br>
 
-support # (Array)
+## Decision Variables:
+$x_{i} \in {0,1}$: Binary variable. Facility i is opened (1) or closed (0) <br>
+$y_{ij}^s \in {0,1}$: Binary variable. If customer j is served by facility i using an S-type drone (1), otherwise (0) <br>
+$y_{ij}^l \in {0,1}$: Binary variable. If customer j is served by facility i usingan L-type drone (1), otherwise (0) <br>
 
-- **:** Weight of customer’s j package # (Array)
-- **:** Weight factor for **S**-type drones for the facilities # (Constant)
-- **:** Weight factor for **L**-type drones for the facilities # (Constant)
-- **:** Payload capacity of **S**-type drones # (Constant)
-- **:** Payload capacity of **L**-type drones # (Constant)
-- **:** Max Range of **S**-type drones (Constant)
-- **:** Max Range of **L**-type drones (Constant)
 
-**Decision Variables:**
+## ObjectiveFunction:
+Minimize total cost. That includes the fixed costs and variable costs. <br>
 
-- ∈ {0, 1} **:** Binary variable. Facility i is opened (1) or closed (0)
-- ∈ {0, 1} : Binary variable. If customer j is served by facility i using an **S**-type drone (1), otherwise (0)
-- ∈ {0, 1} **:** Binary variable. If customer j is served by facility i using an
+$\displaystyle\sum_{i \in F} 𝑓_{𝑖} ∙ x_{i} + \displaystyle\sum_{i \in F} \displaystyle\sum_{j \in C} (𝑐_{𝑖𝑗}^s ∙ y_{ij}^s + 𝑐_{𝑖𝑗}^l ∙ y_{ij}^l)$ 
 
-**L**-type drone (1), otherwise (0)
+## Constraints:
+### 1. Each customer must be served by one facility and one type of drone.
+$\displaystyle\sum_{i \in D_{s}} \displaystyle\sum_{i \in F}  y_{ij}^s + \displaystyle\sum_{i \in D_{l}} \displaystyle\sum_{i \in F}  y_{ij}^l = 1, \quad \forall j \in C$
 
-**Objective Function:**
+### 2. Each facility has  a total capacity limit for the number of drones it can support.
+$\displaystyle\sum_{j \in C} (𝑤_{𝑠} ∙ y_{ij}^s + 𝑤_{l} ∙ y_{ij}^l) \leq K_{i} ∙ x_{i}, \quad \forall i \in F$
+ 
+### 3. A customer can only be assigned to a facility that is open.
+$y_{ij}^s \leq x_{i}$ & $y_{ij}^l \leq x_{i}, \quad \forall i \in F, \quad \forall j \in C$
 
-Minimize total cost. That includes the fixed costs and variable costs.
+### 4. The assigned drone type must be able to carry the package weight.
+$W_{j} ∙ y_{ij}^s \leq P_{s}$ & $W_{j} ∙ y_{ij}^l \leq P_{l}, \quad \forall i \in F, \quad \forall j \in C$
 
-- · + ∑ ∑ ( ·  + · )
+### 5. S-type drones can only serve customers within $R_{s}$ while L-type drones can serve customers within $R_{l}$
+$d_{ij} ∙ y_{ij}^s \leq R_{s}$ & $d_{ij} ∙ y_{ij}^l \leq R_{l}, \quad \forall i \in F, \quad \forall j \in C$
 
-∈ ∈ ∈
+### 6. Each drone (small or large) should be assigned to exactly one customer
 
-**Constraints:**
 
-1. **Each customer must be served by one facility and one type of drone.**
-- (   +  ) = 1, ∀ ∈
+### 7. Each drone should be assigned to exactly one facility.
 
-  ∈
 
-2. **Each facility has a total capacity limit for the number of drones it can support.**
-- ( ·   +  · ) ≤ · , ∀  ∈ ∈
-3. **A customer can only be assigned to a facility that is open.**
-
-≤  &   ≤  ,  ∀ ∈ , ∀ ∈ 
-
-4. **The assigned drone type must be able to carry the package weight.**
-- ≤  &   · ≤  ,  ∀ ∈ , ∀ ∈ 
-5. **S-type drones can only serve customers within while L-type drones can serve customers within**
-- ≤  &   · ≤  ,  ∀ ∈ , ∀ ∈ 
-
-Σχετική Βιβλιογραφία:
-
-1. [**Optimizing drone**-assisted **last**-**mile** deliveries: The vehicle routing problem with flexible **drones**](https://optimization-online.org/wp-content/uploads/2020/04/7737.pdf)
-1. [Last-Mile Drone Delivery: Past, Present, and Future](https://www.mdpi.com/2504-446X/7/2/77)
-1. [Optimal drone deployment for cost-effective and sustainable last-mile delivery operations](https://onlinelibrary.wiley.com/doi/full/10.1111/itor.13527)
-1. [Improving the efficiency of last-mile delivery with the flexible drones traveling salesman problem](https://www.sciencedirect.com/science/article/pii/S0957417422014701)
-1. [**Facility location decisions for drone delivery with riding: A literature review**](https://www.sciencedirect.com/science/article/pii/S0305054824001448)
-1. [**Maximum coverage capacitated facility location problem with range constrained drones**](https://www.sciencedirect.com/science/article/pii/S0968090X18307575)
-1. [**Robust Optimization for Supply Chain Applications: Facility Location and Drone Delivery Problems**](https://www.proquest.com/openview/dce38235e6cecdb0dd4b6493d6e487d0/1?cbl=18750&diss=y&pq-origsite=gscholar)
-1. [**Robust Maximum Coverage Facility Location Problem with Drones Considering Uncertainties in Battery Availability and Consumption**](https://journals.sagepub.com/doi/abs/10.1177/0361198120968094)
-1. [**Facility Location Problem Approach for Distributed Drones**](https://www.mdpi.com/2073-8994/11/1/118)
