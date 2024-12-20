@@ -1,0 +1,255 @@
+Facility Location Problem Instance
+Number of facilities: 8
+Number of customers: 9
+Grid size: 100x100
+Facilities coordinates (x, y):
+59, 18
+28, 56
+44, 31
+7, 1
+40, 38
+51, 15
+45, 10
+19, 35
+Customers coordinates (x, y):
+0, 35
+26, 5
+14, 53
+58, 7
+29, 7
+41, 53
+9, 31
+59, 45
+18, 32
+Distances between facilities and customers:
+Facility 0 to Customer 0: 61.40
+Facility 0 to Customer 1: 35.47
+Facility 0 to Customer 2: 57.01
+Facility 0 to Customer 3: 11.05
+Facility 0 to Customer 4: 31.95
+Facility 0 to Customer 5: 39.36
+Facility 0 to Customer 6: 51.66
+Facility 0 to Customer 7: 27.00
+Facility 0 to Customer 8: 43.32
+Facility 1 to Customer 0: 35.00
+Facility 1 to Customer 1: 51.04
+Facility 1 to Customer 2: 14.32
+Facility 1 to Customer 3: 57.45
+Facility 1 to Customer 4: 49.01
+Facility 1 to Customer 5: 13.34
+Facility 1 to Customer 6: 31.40
+Facility 1 to Customer 7: 32.89
+Facility 1 to Customer 8: 26.00
+Facility 2 to Customer 0: 44.18
+Facility 2 to Customer 1: 31.62
+Facility 2 to Customer 2: 37.20
+Facility 2 to Customer 3: 27.78
+Facility 2 to Customer 4: 28.30
+Facility 2 to Customer 5: 22.20
+Facility 2 to Customer 6: 35.00
+Facility 2 to Customer 7: 20.52
+Facility 2 to Customer 8: 26.02
+Facility 3 to Customer 0: 34.71
+Facility 3 to Customer 1: 19.42
+Facility 3 to Customer 2: 52.47
+Facility 3 to Customer 3: 51.35
+Facility 3 to Customer 4: 22.80
+Facility 3 to Customer 5: 62.13
+Facility 3 to Customer 6: 30.07
+Facility 3 to Customer 7: 68.12
+Facility 3 to Customer 8: 32.89
+Facility 4 to Customer 0: 40.11
+Facility 4 to Customer 1: 35.85
+Facility 4 to Customer 2: 30.02
+Facility 4 to Customer 3: 35.85
+Facility 4 to Customer 4: 32.89
+Facility 4 to Customer 5: 15.03
+Facility 4 to Customer 6: 31.78
+Facility 4 to Customer 7: 20.25
+Facility 4 to Customer 8: 22.80
+Facility 5 to Customer 0: 54.78
+Facility 5 to Customer 1: 26.93
+Facility 5 to Customer 2: 53.04
+Facility 5 to Customer 3: 10.63
+Facility 5 to Customer 4: 23.41
+Facility 5 to Customer 5: 39.29
+Facility 5 to Customer 6: 44.94
+Facility 5 to Customer 7: 31.05
+Facility 5 to Customer 8: 37.12
+Facility 6 to Customer 0: 51.48
+Facility 6 to Customer 1: 19.65
+Facility 6 to Customer 2: 53.01
+Facility 6 to Customer 3: 13.34
+Facility 6 to Customer 4: 16.28
+Facility 6 to Customer 5: 43.19
+Facility 6 to Customer 6: 41.68
+Facility 6 to Customer 7: 37.70
+Facility 6 to Customer 8: 34.83
+Facility 7 to Customer 0: 19.00
+Facility 7 to Customer 1: 30.81
+Facility 7 to Customer 2: 18.68
+Facility 7 to Customer 3: 48.01
+Facility 7 to Customer 4: 29.73
+Facility 7 to Customer 5: 28.43
+Facility 7 to Customer 6: 10.77
+Facility 7 to Customer 7: 41.23
+Facility 7 to Customer 8: 3.16
+Drone operational costs (S-type drones):
+Facility 0 to Customer 0: 16
+Facility 0 to Customer 1: 16
+Facility 0 to Customer 2: 15
+Facility 0 to Customer 3: 11
+Facility 0 to Customer 4: 8
+Facility 0 to Customer 5: 23
+Facility 0 to Customer 6: 5
+Facility 0 to Customer 7: 7
+Facility 0 to Customer 8: 17
+Facility 1 to Customer 0: 19
+Facility 1 to Customer 1: 6
+Facility 1 to Customer 2: 15
+Facility 1 to Customer 3: 8
+Facility 1 to Customer 4: 23
+Facility 1 to Customer 5: 21
+Facility 1 to Customer 6: 7
+Facility 1 to Customer 7: 22
+Facility 1 to Customer 8: 12
+Facility 2 to Customer 0: 23
+Facility 2 to Customer 1: 9
+Facility 2 to Customer 2: 11
+Facility 2 to Customer 3: 12
+Facility 2 to Customer 4: 9
+Facility 2 to Customer 5: 21
+Facility 2 to Customer 6: 9
+Facility 2 to Customer 7: 8
+Facility 2 to Customer 8: 23
+Facility 3 to Customer 0: 6
+Facility 3 to Customer 1: 15
+Facility 3 to Customer 2: 17
+Facility 3 to Customer 3: 19
+Facility 3 to Customer 4: 16
+Facility 3 to Customer 5: 15
+Facility 3 to Customer 6: 11
+Facility 3 to Customer 7: 9
+Facility 3 to Customer 8: 21
+Facility 4 to Customer 0: 24
+Facility 4 to Customer 1: 13
+Facility 4 to Customer 2: 18
+Facility 4 to Customer 3: 16
+Facility 4 to Customer 4: 10
+Facility 4 to Customer 5: 21
+Facility 4 to Customer 6: 23
+Facility 4 to Customer 7: 23
+Facility 4 to Customer 8: 20
+Facility 5 to Customer 0: 16
+Facility 5 to Customer 1: 16
+Facility 5 to Customer 2: 24
+Facility 5 to Customer 3: 10
+Facility 5 to Customer 4: 8
+Facility 5 to Customer 5: 10
+Facility 5 to Customer 6: 15
+Facility 5 to Customer 7: 5
+Facility 5 to Customer 8: 19
+Facility 6 to Customer 0: 15
+Facility 6 to Customer 1: 23
+Facility 6 to Customer 2: 22
+Facility 6 to Customer 3: 21
+Facility 6 to Customer 4: 23
+Facility 6 to Customer 5: 18
+Facility 6 to Customer 6: 22
+Facility 6 to Customer 7: 23
+Facility 6 to Customer 8: 19
+Facility 7 to Customer 0: 19
+Facility 7 to Customer 1: 8
+Facility 7 to Customer 2: 11
+Facility 7 to Customer 3: 17
+Facility 7 to Customer 4: 7
+Facility 7 to Customer 5: 20
+Facility 7 to Customer 6: 13
+Facility 7 to Customer 7: 12
+Facility 7 to Customer 8: 24
+Drone operational costs (L-type drones):
+Facility 0 to Customer 0: 22
+Facility 0 to Customer 1: 26
+Facility 0 to Customer 2: 26
+Facility 0 to Customer 3: 26
+Facility 0 to Customer 4: 10
+Facility 0 to Customer 5: 17
+Facility 0 to Customer 6: 28
+Facility 0 to Customer 7: 15
+Facility 0 to Customer 8: 12
+Facility 1 to Customer 0: 14
+Facility 1 to Customer 1: 22
+Facility 1 to Customer 2: 24
+Facility 1 to Customer 3: 23
+Facility 1 to Customer 4: 32
+Facility 1 to Customer 5: 25
+Facility 1 to Customer 6: 27
+Facility 1 to Customer 7: 31
+Facility 1 to Customer 8: 31
+Facility 2 to Customer 0: 20
+Facility 2 to Customer 1: 12
+Facility 2 to Customer 2: 31
+Facility 2 to Customer 3: 19
+Facility 2 to Customer 4: 19
+Facility 2 to Customer 5: 30
+Facility 2 to Customer 6: 25
+Facility 2 to Customer 7: 21
+Facility 2 to Customer 8: 11
+Facility 3 to Customer 0: 18
+Facility 3 to Customer 1: 33
+Facility 3 to Customer 2: 12
+Facility 3 to Customer 3: 33
+Facility 3 to Customer 4: 34
+Facility 3 to Customer 5: 24
+Facility 3 to Customer 6: 12
+Facility 3 to Customer 7: 28
+Facility 3 to Customer 8: 27
+Facility 4 to Customer 0: 17
+Facility 4 to Customer 1: 26
+Facility 4 to Customer 2: 17
+Facility 4 to Customer 3: 16
+Facility 4 to Customer 4: 16
+Facility 4 to Customer 5: 12
+Facility 4 to Customer 6: 10
+Facility 4 to Customer 7: 13
+Facility 4 to Customer 8: 34
+Facility 5 to Customer 0: 14
+Facility 5 to Customer 1: 10
+Facility 5 to Customer 2: 24
+Facility 5 to Customer 3: 14
+Facility 5 to Customer 4: 22
+Facility 5 to Customer 5: 17
+Facility 5 to Customer 6: 17
+Facility 5 to Customer 7: 14
+Facility 5 to Customer 8: 18
+Facility 6 to Customer 0: 10
+Facility 6 to Customer 1: 13
+Facility 6 to Customer 2: 12
+Facility 6 to Customer 3: 11
+Facility 6 to Customer 4: 17
+Facility 6 to Customer 5: 32
+Facility 6 to Customer 6: 18
+Facility 6 to Customer 7: 11
+Facility 6 to Customer 8: 23
+Facility 7 to Customer 0: 23
+Facility 7 to Customer 1: 13
+Facility 7 to Customer 2: 15
+Facility 7 to Customer 3: 20
+Facility 7 to Customer 4: 12
+Facility 7 to Customer 5: 17
+Facility 7 to Customer 6: 12
+Facility 7 to Customer 7: 23
+Facility 7 to Customer 8: 22
+Facility capacities:
+Facility 0: 17
+Facility 1: 6
+Facility 2: 17
+Facility 3: 23
+Facility 4: 10
+Facility 5: 20
+Facility 6: 6
+Facility 7: 12
+Small drone payload capacity: 13
+Large drone payload capacity: 23
+Small drone max range: 45
+Large drone max range: 90

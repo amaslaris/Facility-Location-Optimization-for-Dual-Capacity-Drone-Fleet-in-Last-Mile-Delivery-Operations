@@ -1,0 +1,159 @@
+Facility Location Problem Instance
+Number of facilities: 6
+Number of customers: 7
+Grid size: 100x100
+Facilities coordinates (x, y):
+17, 22
+41, 32
+25, 43
+34, 21
+1, 7
+16, 11
+Customers coordinates (x, y):
+37, 16
+2, 6
+38, 27
+22, 20
+27, 38
+32, 7
+24, 36
+Distances between facilities and customers:
+Facility 0 to Customer 0: 20.88
+Facility 0 to Customer 1: 21.93
+Facility 0 to Customer 2: 21.59
+Facility 0 to Customer 3: 5.39
+Facility 0 to Customer 4: 18.87
+Facility 0 to Customer 5: 21.21
+Facility 0 to Customer 6: 15.65
+Facility 1 to Customer 0: 16.49
+Facility 1 to Customer 1: 46.87
+Facility 1 to Customer 2: 5.83
+Facility 1 to Customer 3: 22.47
+Facility 1 to Customer 4: 15.23
+Facility 1 to Customer 5: 26.57
+Facility 1 to Customer 6: 17.46
+Facility 2 to Customer 0: 29.55
+Facility 2 to Customer 1: 43.57
+Facility 2 to Customer 2: 20.62
+Facility 2 to Customer 3: 23.19
+Facility 2 to Customer 4: 5.39
+Facility 2 to Customer 5: 36.67
+Facility 2 to Customer 6: 7.07
+Facility 3 to Customer 0: 5.83
+Facility 3 to Customer 1: 35.34
+Facility 3 to Customer 2: 7.21
+Facility 3 to Customer 3: 12.04
+Facility 3 to Customer 4: 18.38
+Facility 3 to Customer 5: 14.14
+Facility 3 to Customer 6: 18.03
+Facility 4 to Customer 0: 37.11
+Facility 4 to Customer 1: 1.41
+Facility 4 to Customer 2: 42.06
+Facility 4 to Customer 3: 24.70
+Facility 4 to Customer 4: 40.46
+Facility 4 to Customer 5: 31.00
+Facility 4 to Customer 6: 37.01
+Facility 5 to Customer 0: 21.59
+Facility 5 to Customer 1: 14.87
+Facility 5 to Customer 2: 27.20
+Facility 5 to Customer 3: 10.82
+Facility 5 to Customer 4: 29.15
+Facility 5 to Customer 5: 16.49
+Facility 5 to Customer 6: 26.25
+Drone operational costs (S-type drones):
+Facility 0 to Customer 0: 23
+Facility 0 to Customer 1: 5
+Facility 0 to Customer 2: 19
+Facility 0 to Customer 3: 12
+Facility 0 to Customer 4: 6
+Facility 0 to Customer 5: 7
+Facility 0 to Customer 6: 18
+Facility 1 to Customer 0: 18
+Facility 1 to Customer 1: 15
+Facility 1 to Customer 2: 20
+Facility 1 to Customer 3: 8
+Facility 1 to Customer 4: 24
+Facility 1 to Customer 5: 9
+Facility 1 to Customer 6: 18
+Facility 2 to Customer 0: 20
+Facility 2 to Customer 1: 22
+Facility 2 to Customer 2: 11
+Facility 2 to Customer 3: 14
+Facility 2 to Customer 4: 11
+Facility 2 to Customer 5: 5
+Facility 2 to Customer 6: 23
+Facility 3 to Customer 0: 20
+Facility 3 to Customer 1: 23
+Facility 3 to Customer 2: 8
+Facility 3 to Customer 3: 22
+Facility 3 to Customer 4: 6
+Facility 3 to Customer 5: 5
+Facility 3 to Customer 6: 19
+Facility 4 to Customer 0: 9
+Facility 4 to Customer 1: 24
+Facility 4 to Customer 2: 15
+Facility 4 to Customer 3: 14
+Facility 4 to Customer 4: 6
+Facility 4 to Customer 5: 7
+Facility 4 to Customer 6: 16
+Facility 5 to Customer 0: 24
+Facility 5 to Customer 1: 9
+Facility 5 to Customer 2: 9
+Facility 5 to Customer 3: 10
+Facility 5 to Customer 4: 13
+Facility 5 to Customer 5: 6
+Facility 5 to Customer 6: 16
+Drone operational costs (L-type drones):
+Facility 0 to Customer 0: 12
+Facility 0 to Customer 1: 29
+Facility 0 to Customer 2: 31
+Facility 0 to Customer 3: 21
+Facility 0 to Customer 4: 33
+Facility 0 to Customer 5: 26
+Facility 0 to Customer 6: 19
+Facility 1 to Customer 0: 33
+Facility 1 to Customer 1: 23
+Facility 1 to Customer 2: 32
+Facility 1 to Customer 3: 26
+Facility 1 to Customer 4: 27
+Facility 1 to Customer 5: 28
+Facility 1 to Customer 6: 26
+Facility 2 to Customer 0: 23
+Facility 2 to Customer 1: 18
+Facility 2 to Customer 2: 17
+Facility 2 to Customer 3: 11
+Facility 2 to Customer 4: 22
+Facility 2 to Customer 5: 34
+Facility 2 to Customer 6: 16
+Facility 3 to Customer 0: 18
+Facility 3 to Customer 1: 31
+Facility 3 to Customer 2: 31
+Facility 3 to Customer 3: 20
+Facility 3 to Customer 4: 23
+Facility 3 to Customer 5: 13
+Facility 3 to Customer 6: 22
+Facility 4 to Customer 0: 11
+Facility 4 to Customer 1: 32
+Facility 4 to Customer 2: 14
+Facility 4 to Customer 3: 20
+Facility 4 to Customer 4: 15
+Facility 4 to Customer 5: 27
+Facility 4 to Customer 6: 30
+Facility 5 to Customer 0: 19
+Facility 5 to Customer 1: 13
+Facility 5 to Customer 2: 18
+Facility 5 to Customer 3: 15
+Facility 5 to Customer 4: 11
+Facility 5 to Customer 5: 26
+Facility 5 to Customer 6: 14
+Facility capacities:
+Facility 0: 10
+Facility 1: 16
+Facility 2: 14
+Facility 3: 10
+Facility 4: 12
+Facility 5: 6
+Small drone payload capacity: 8
+Large drone payload capacity: 18
+Small drone max range: 31
+Large drone max range: 105
