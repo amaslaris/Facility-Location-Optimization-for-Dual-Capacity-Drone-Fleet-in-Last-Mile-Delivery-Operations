@@ -2,3 +2,6 @@
 .venv/
 mipEnv/
 
+# Ignore temp files
+tempCodeRunnerFile/
+
