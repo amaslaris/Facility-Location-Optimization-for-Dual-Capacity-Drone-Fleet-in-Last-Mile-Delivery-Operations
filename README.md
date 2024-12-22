@@ -16,8 +16,9 @@ Minimize the total cost, which includes:
 1. **Facility Assignment Constraint**: Each customer must be served by one facility and one type of drone.
 2. **Facility Capacity Constraint**: Each facility has a total capacity limit for the number of drones it can support, with each type of drone occupying a different amount of space.
 3. **Assignment Activation Constraint**: A customer can only be assigned to a facility that is open.
-4. **PayloadCapacityConstraint**:The assigned drone type must be able to carry the package weight.
-5. **Distance/RangeConstraint**: Small-capacity drones can only serve customers within range $R_{s}$, and large capacity drones within range $R_{l}$.
+4. **Payload Capacity Constraint**:The assigned drone type must be able to carry the package weight.
+5. **Distance/Range Constraint**: Small-capacity drones can only serve customers within range $R_{s}$, and large capacity drones within range $R_{l}$.
+6. **Distinct Facility Assignment Constraint**: Each drone must be assigned to exactly one facility.
 
 
 ## Parameters:
@@ -47,27 +48,42 @@ $y_{ij}^l \in {0,1}$: Binary variable. If customer j is served by facility i usi
 ## ObjectiveFunction:
 Minimize total cost. That includes the fixed costs and variable costs. <br>
 
-$\displaystyle\sum_{i \in F} 𝑓_{𝑖} ∙ x_{i} + \displaystyle\sum_{i \in F} \displaystyle\sum_{j \in C} (𝑐_{𝑖𝑗}^s ∙ y_{ij}^s + 𝑐_{𝑖𝑗}^l ∙ y_{ij}^l)$ 
+$\displaystyle\sum_{i \in F} 𝑓_{𝑖} ∙ x_{i} + \displaystyle\sum_{i \in F} \displaystyle\sum_{j \in C} (𝑐_{𝑖𝑗}^s ∙ y_{ij}^s + (𝑐_{𝑖𝑗}^l + penalty \underline{ }large \underline{ }drone) ∙ y_{ij}^l)$ 
+
+We give a penalty to the solver for choosing a large drone in order to discourage its selection unless absolutely necessary.
 
 ## Constraints:
 ### 1. Each customer must be served by one facility and one type of drone.
-$\displaystyle\sum_{i \in D_{s}} \displaystyle\sum_{i \in F}  y_{ij}^s + \displaystyle\sum_{i \in D_{l}} \displaystyle\sum_{i \in F}  y_{ij}^l = 1, \quad \forall j \in C$
+$\displaystyle\sum_{s \in D_{s}} \displaystyle\sum_{i \in F}  y_{ij}^s + \displaystyle\sum_{l \in D_{l}} \displaystyle\sum_{i \in F}  y_{ij}^l = 1, \quad \forall j \in C$
 
 ### 2. Each facility has  a total capacity limit for the number of drones it can support.
-$\displaystyle\sum_{j \in C} (𝑤_{𝑠} ∙ y_{ij}^s + 𝑤_{l} ∙ y_{ij}^l) \leq K_{i} ∙ x_{i}, \quad \forall i \in F$
+$\displaystyle\sum_{s \in Ds}\displaystyle\sum_{j \in C}(𝑤_{𝑠} ∙ y_{ij}^s) + \displaystyle\sum_{l \in Dl}\displaystyle\sum_{j \in C} (𝑤_{l} ∙ y_{ij}^l) \leq K_{i} ∙ x_{i}, \quad \forall i \in F$
  
 ### 3. A customer can only be assigned to a facility that is open.
-$y_{ij}^s \leq x_{i}$ & $y_{ij}^l \leq x_{i}, \quad \forall i \in F, \quad \forall j \in C$
+$\quad$ For small drones s: <br>
+$\quad \quad$ $y_{ij}^s \leq x_{i} \quad \forall s \in D_{s}, i \in F, j \in C$ <br>
+$\quad$ For all large drones l: <br>
+$\quad \quad$ $y_{ij}^l \leq x_{i}, \quad \forall l \in D_{l}, i \in F , j \in C$ <br>
 
 ### 4. The assigned drone type must be able to carry the package weight.
-$W_{j} ∙ y_{ij}^s \leq P_{s}$ & $W_{j} ∙ y_{ij}^l \leq P_{l}, \quad \forall i \in F, \quad \forall j \in C$
+$\quad$ For small drones s: <br>
+$\quad \quad$ $W_{j} ∙ y_{ij}^s \leq P_{s} \quad \forall s \in D_{s}, i \in F, j \in C$ <br>
+$\quad$ For all large drones l: <br>
+$\quad \quad$ $W_{j} ∙ y_{ij}^l \leq P_{l}, \quad \forall l \in D_{l}, i \in F , j \in C$ <br>
 
 ### 5. S-type drones can only serve customers within $R_{s}$ while L-type drones can serve customers within $R_{l}$
-$d_{ij} ∙ y_{ij}^s \leq R_{s}$ & $d_{ij} ∙ y_{ij}^l \leq R_{l}, \quad \forall i \in F, \quad \forall j \in C$
+$\quad$ For small drones s: <br>
+$\quad \quad$ $d_{ij} ∙ y_{ij}^s \leq R_{s} \quad \forall s \in D_{s}, i \in F, j \in C$ <br>
+$\quad$ For all large drones l: <br>
+$\quad \quad$ $d_{ij} ∙ y_{ij}^l \leq R_{l}, \quad \forall l \in D_{l}, i \in F , j \in C$ <br>
 
-### 6. Each drone (small or large) should be assigned to exactly one customer
 
+### 6. Each drone should be assigned to exactly one facility.
+For Small Drones: <br>
+$\quad$ $\displaystyle\sum_{i \in F}\displaystyle\sum_{j \in C}(y_{ij}^s) \leq 1, \quad \forall s \in D_{s}$
+<br>
+For Large Drones: <br>
+$\quad$ $\displaystyle\sum_{i \in F}\displaystyle\sum_{j \in C}(y_{ij}^l) \leq 1, \quad \forall s \in D_{l}$
 
-### 7. Each drone should be assigned to exactly one facility.
 
 
