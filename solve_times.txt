@@ -1,4 +1,0 @@
-Class 5, Problem 1:
-Total Time: 65.67 seconds
-Solver Time: 8.02 seconds
-
