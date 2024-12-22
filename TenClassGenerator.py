@@ -3,8 +3,8 @@ import numpy as np
 import os
 
 # Random Seed for Reproducibility
-random.seed(42)
-np.random.seed(42)
+random.seed(69)
+np.random.seed(69)
 
 # Class to represent a point (either facility or customer)
 class Point:
@@ -36,6 +36,16 @@ def generate_costs(n_facilities, n_customers, cost_range_s, cost_range_l):
     cost_l = np.random.randint(*cost_range_l, (n_facilities, n_customers))
     return cost_s, cost_l
 
+def generate_fixed_costs(n_facilities, fixed_cost_range):
+    fixed_costs = np.random.randint(fixed_cost_range[0], fixed_cost_range[1] + 1, n_facilities)
+    return fixed_costs
+
+# Generate random operational costs for drones
+def generate_costs(n_facilities, n_customers, cost_range_s, cost_range_l):
+    cost_s = np.random.randint(*cost_range_s, (n_facilities, n_customers))
+    cost_l = np.random.randint(*cost_range_l, (n_facilities, n_customers))
+    return cost_s, cost_l
+
 # Generate random facility capacities
 def generate_facility_capacities(n_facilities, max_capacity):
     return np.random.randint(5, max_capacity + 1, n_facilities)
@@ -45,22 +55,26 @@ def generate_package_weights(n_customers, min_weight, max_weight):
     return np.random.randint(min_weight, max_weight + 1, n_customers)
 
 # Generate the problem instance
-def generate_problem_instance(n_facilities, n_customers, grid_size, max_capacity, cost_range_s, cost_range_l, max_payload_small, max_payload_large, max_range_small, max_range_large, package_weight_range=(1, 30)):
+def generate_problem_instance(n_facilities, n_customers, grid_size, max_capacity, fixed_cost_range, var_cost_range_s, var_cost_range_l, max_payload_small, max_payload_large, max_range_small, max_range_large, Ds, Dl, package_weight_range):
     facilities = generate_points(n_facilities, grid_size)
     customers = generate_points(n_customers, grid_size)
     distances = compute_distances(facilities, customers)
-    cost_s, cost_l = generate_costs(n_facilities, n_customers, cost_range_s, cost_range_l)
+    fixed_costs = generate_fixed_costs(n_facilities, fixed_cost_range)
+    cost_s, cost_l = generate_costs(n_facilities, n_customers, var_cost_range_s, var_cost_range_l)
     facility_capacities = generate_facility_capacities(n_facilities, max_capacity)
     payload_small = random.randint(5, max_payload_small)
     payload_large = random.randint(10, max_payload_large)
     range_small = random.randint(10, max_range_small)
     range_large = random.randint(20, max_range_large)
     package_weights = generate_package_weights(n_customers, *package_weight_range)
+    Ds = Ds
+    Dl = Dl
 
     return {
         'facilities': facilities,
         'customers': customers,
         'distances': distances,
+        'fixed_costs' : fixed_costs,
         'cost_s': cost_s,
         'cost_l': cost_l,
         'facility_capacities': facility_capacities,
@@ -71,7 +85,9 @@ def generate_problem_instance(n_facilities, n_customers, grid_size, max_capacity
         'package_weights': package_weights,  
         'grid_size': grid_size,
         'n_facilities': n_facilities,
-        'n_customers': n_customers
+        'n_customers': n_customers,
+        'Ds' : Ds,
+        'Dl' : Dl,
     }
 
 # Save problem instance to disk (including package weights)
@@ -96,6 +112,9 @@ def save_problem_to_disk(problem_instance, class_num, problem_num):
         for i, facility in enumerate(problem_instance['facilities']):
             for j, customer in enumerate(problem_instance['customers']):
                 file.write(f"Facility {i} to Customer {j}: {problem_instance['distances'][i][j]:.2f}\n")
+        file.write("Facilities fixed costs:\n")
+        for i in range(len(problem_instance['facilities'])):
+            file.write(f"Facility {i}: {problem_instance['fixed_costs'][i]}\n")
         file.write("Drone operational costs (S-type drones):\n")
         for i in range(len(problem_instance['facilities'])):
             for j in range(len(problem_instance['customers'])):
@@ -114,30 +133,112 @@ def save_problem_to_disk(problem_instance, class_num, problem_num):
         file.write("Package weights:\n")
         for i, weight in enumerate(problem_instance['package_weights']):
             file.write(f"Customer {i}: {weight}\n")
+        file.write(f"Number of S-type drones: {problem_instance['Ds']}\n")
+        file.write(f"Number of L-type drones: {problem_instance['Dl']}\n")
 
 # Generate and save multiple problem instances across classes
-def generate_and_save_multiple_classes(num_problems_per_class=10):
-    settings = [
-    # grid_size, customers, facilities, max_cap, (cost_s), (cost_l), max_payload_s, max_payload_l, max_range_s, max_range_l
-    (30, 30, 10, 50, (5, 25), (10, 35), 10, 30, 30, 60),    # Class 1 - Small instance, quick to solve (~1 second)
-    (200, 12, 9, 25, (5, 30), (10, 40), 20, 35, 60, 120),    # Class 2 - Slightly larger (~5 seconds)
-    (300, 15, 10, 30, (5, 35), (10, 45), 25, 40, 70, 140),   # Class 3 - Moderate size (~10 seconds)
-    (400, 18, 12, 35, (5, 40), (10, 50), 30, 45, 80, 160),   # Class 4 - Larger (~20 seconds)
-    (500, 20, 12, 40, (5, 45), (10, 55), 35, 50, 90, 180),   # Class 5 - Larger (~30 seconds)
-    (600, 22, 14, 45, (10, 50), (15, 60), 40, 55, 100, 200),  # Class 6 - Large (~1 minute)
-    (700, 25, 16, 50, (10, 55), (15, 65), 45, 60, 110, 220),  # Class 7 - Very large (~3 minutes)
-    (800, 30, 18, 55, (10, 60), (15, 70), 50, 65, 120, 240),  # Class 8 - Very large (~8 minutes)
-    (900, 35, 20, 60, (15, 65), (20, 75), 55, 70, 130, 260),  # Class 9 - Huge (~15 minutes)
-    (1000, 400, 25, 50, (15, 70), (20, 80), 40, 80, 300, 500)  # Class 10 - Extremely large (~30 minutes)
-]
+def generate_and_save_multiple_classes(num_problems_per_class=20):
+    # Define the settings for each class using dictionaries for better clarity
+    class_settings = [
+        # Class 1
+        {
+            "grid_size": 10, "n_customers": 15, "n_facilities": 5, "max_capacity": 10,
+            "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 30), 
+            "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 20, 
+            "Dl": 20, "package_weight_range": (1, 30)
+        },
+        # Less than 1 sec solver time
 
-    for class_num, setting in enumerate(settings, start=1):
-        grid_size, n_customers, n_facilities, max_capacity, cost_range_s, cost_range_l, max_payload_s, max_payload_l, max_range_s, max_range_l = setting
+        # Class 2 
+        {
+            "grid_size": 15, "n_customers": 20, "n_facilities": 30, "max_capacity": 20,
+            "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 20), 
+            "max_payload_s": 10, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 30, 
+            "Dl": 20, "package_weight_range": (1, 20)
+        },
+        # ~ 5 sec solver time
+
+        # Class 3
+        {
+            "grid_size": 20, "n_customers": 30, "n_facilities": 40, "max_capacity": 20,
+            "fixed_cost_range": (10, 30), "var_cost_range_s": (5, 15), "var_cost_range_l" : (10, 25), 
+            "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 20, "max_range_l": 30, "Ds": 20, 
+            "Dl": 20, "package_weight_range": (5, 30)
+        },
+        # ~ 10 sec solver time
+
+        # Class 4
+        {
+            "grid_size": 40, "n_customers": 53, "n_facilities": 40, "max_capacity": 40,
+            "fixed_cost_range": (1, 50), "var_cost_range_s": (1, 15), "var_cost_range_l" : (15, 25), 
+            "max_payload_s": 30, "max_payload_l": 70, "max_range_s": 30, "max_range_l": 60, "Ds": 35, 
+            "Dl": 45, "package_weight_range": (5, 50)
+        },
+        # ~ 20+ - 35 sec solver time
+
+        # Class 5
+        {
+            "grid_size": 80, "n_customers": 65, "n_facilities": 30, "max_capacity": 50,
+            "fixed_cost_range": (1, 50), "var_cost_range_s": (1, 15), "var_cost_range_l" : (15, 25), 
+            "max_payload_s": 30, "max_payload_l": 70, "max_range_s": 50, "max_range_l": 100, "Ds": 100, 
+            "Dl": 100, "package_weight_range": (5, 50)
+        },
+        # ~ 1 min solver time
+
+        # Class 6
+        {
+            "grid_size": 150, "n_customers": 130, "n_facilities": 60, "max_capacity": 80,
+            "fixed_cost_range": (10, 20), "var_cost_range_s": (5, 15), "var_cost_range_l" : (10, 25), 
+            "max_payload_s": 40, "max_payload_l": 70, "max_range_s": 100, "max_range_l": 250, "Ds": 300, 
+            "Dl": 150, "package_weight_range": (5, 30)
+        },
+        # ~ 5 min solver time
+         
+        # Class 7
+        {
+            "grid_size": 700, "n_customers": 25, "n_facilities": 16, "max_capacity": 50,
+            "fixed_cost_range": (10, 20), "var_cost_range_s": (5, 15), "var_cost_range_l" : (10, 25), 
+            "max_payload_s": 45, "max_payload_l": 60, "max_range_s": 110, "max_range_l": 220, "Ds": 3, 
+            "Dl": 3, "package_weight_range": (5, 30)
+        },
+        # ~ 15 min solver time
+
+        # Class 8 
+        {
+            "grid_size": 800, "n_customers": 30, "n_facilities": 18, "max_capacity": 55,
+            "fixed_cost_range": (10, 20), "var_cost_range_s": (5, 15), "var_cost_range_l" : (10, 25), 
+            "max_payload_s": 50, "max_payload_l": 65, "max_range_s": 120, "max_range_l": 240, "Ds": 3, 
+            "Dl": 3, "package_weight_range": (5, 30)
+        },
+        # ~ 15 min solver time
+        
+        # Class 9
+        {
+            "grid_size": 900, "n_customers": 35, "n_facilities": 20, "max_capacity": 60,
+            "fixed_cost_range": (10, 20), "var_cost_range_s": (5, 15), "var_cost_range_l" : (10, 25), 
+            "max_payload_s": 55, "max_payload_l": 70, "max_range_s": 130, "max_range_l": 260, "Ds": 3, 
+            "Dl": 3, "package_weight_range": (5, 30)
+        },
+        # ~ 20 min solver time
+
+        # Class 10
+        {
+            "grid_size": 1000, "n_customers": 400, "n_facilities": 25, "max_capacity": 50,
+            "fixed_cost_range": (10, 20), "var_cost_range_s": (5, 15), "var_cost_range_l" : (10, 25), 
+            "max_payload_s": 40, "max_payload_l": 80, "max_range_s": 300, "max_range_l": 500, "Ds": 3, 
+            "Dl": 3, "package_weight_range": (5, 30)
+        }
+        # ~ 30 min solver time
+    ]
+
+    # Iterate over the class settings and generate problem instances
+    for class_num, setting in enumerate(class_settings, start=1):
         for problem_num in range(1, num_problems_per_class + 1):
             problem_instance = generate_problem_instance(
-                n_facilities, n_customers, grid_size, max_capacity, cost_range_s, cost_range_l, max_payload_s, max_payload_l, max_range_s, max_range_l
+                setting["n_facilities"], setting["n_customers"], setting["grid_size"], setting["max_capacity"],
+                setting["fixed_cost_range"], setting["var_cost_range_s"], setting["var_cost_range_l"], setting["max_payload_s"], setting["max_payload_l"],
+                setting["max_range_s"], setting["max_range_l"], setting["Ds"], setting["Dl"], setting["fixed_cost_range"]
             )
             save_problem_to_disk(problem_instance, class_num, problem_num)
 
-# Generate and save problem instances for all classes
 generate_and_save_multiple_classes()
