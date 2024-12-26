@@ -3,8 +3,8 @@ import numpy as np
 import os
 
 # Random Seed for Reproducibility
-random.seed(69)
-np.random.seed(69)
+random.seed(54)
+np.random.seed(54)
 
 # Class to represent a point (either facility or customer)
 class Point:
@@ -194,39 +194,39 @@ def generate_and_save_multiple_classes(num_problems_per_class=20):
         },
         # ~ 5 min solver time
          
-        # Class 7 - Testing Now
+        # Class 7 - OK
         {
-            "grid_size": 200, "n_customers": 100, "n_facilities": 50, "max_capacity": 100,
+            "grid_size": 160, "n_customers": 72, "n_facilities": 40, "max_capacity": 100,
             "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
-            "max_payload_s": 25, "max_payload_l": 60, "max_range_s": 150, "max_range_l": 250, "Ds": 200, 
-            "Dl": 200, "package_weight_range": (5, 40)
+            "max_payload_s": 25, "max_payload_l": 60, "max_range_s": 160, "max_range_l": 260, "Ds": 200, 
+            "Dl": 200, "package_weight_range": (5, 35)
         },
-        # ~ 10 min solver time
+        # ~ 10-11 min solver time
 
-        # Class 8 - Testing Now
+        # Class 8 - OK
         {
-            "grid_size": 250, "n_customers": 130, "n_facilities": 70, "max_capacity": 120,
-            "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 20), "var_cost_range_l": (10, 30), 
-            "max_payload_s": 30, "max_payload_l": 70, "max_range_s": 180, "max_range_l": 300, "Ds": 250, 
-            "Dl": 250, "package_weight_range": (5, 50)
+            "grid_size": 160, "n_customers": 83, "n_facilities": 41, "max_capacity": 100,
+            "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
+            "max_payload_s": 25, "max_payload_l": 60, "max_range_s": 160, "max_range_l": 260, "Ds": 200, 
+            "Dl": 200, "package_weight_range": (5, 35)
         },
         # ~ 15 min solver time
         
-        # Class 9 - Testing Now
+        # Class 9 - OK
         {
-            "grid_size": 300, "n_customers": 160, "n_facilities": 80, "max_capacity": 150,
-            "fixed_cost_range": (1, 60), "var_cost_range_s": (5, 20), "var_cost_range_l": (10, 30), 
-            "max_payload_s": 35, "max_payload_l": 80, "max_range_s": 200, "max_range_l": 350, "Ds": 300, 
-            "Dl": 300, "package_weight_range": (10, 60)
+            "grid_size": 160, "n_customers": 88, "n_facilities": 41, "max_capacity": 100,
+            "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
+            "max_payload_s": 25, "max_payload_l": 60, "max_range_s": 160, "max_range_l": 260, "Ds": 200, 
+            "Dl": 200, "package_weight_range": (5, 35)
         },
         # ~ 20 min solver time
 
-        # Class 10 - Testing Now
+        # Class 10 - OK
         {
-            "grid_size": 400, "n_customers": 200, "n_facilities": 100, "max_capacity": 200,
-            "fixed_cost_range": (1, 70), "var_cost_range_s": (10, 25), "var_cost_range_l": (15, 35), 
-            "max_payload_s": 40, "max_payload_l": 90, "max_range_s": 250, "max_range_l": 400, "Ds": 400, 
-            "Dl": 400, "package_weight_range": (10, 70)
+            "grid_size": 200, "n_customers": 80, "n_facilities": 50, "max_capacity": 100,
+            "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
+            "max_payload_s": 25, "max_payload_l": 60, "max_range_s": 150, "max_range_l": 250, "Ds": 200, 
+            "Dl": 200, "package_weight_range": (5, 40)
         }
         # ~ 30 min solver time
     ]
