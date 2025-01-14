@@ -3,8 +3,8 @@ import numpy as np
 import os
 
 # Random Seed for Reproducibility
-random.seed(54)
-np.random.seed(54)
+random.seed(999)
+np.random.seed(999)
 
 # Class to represent a point (either facility or customer)
 class Point:
@@ -205,9 +205,9 @@ def generate_and_save_multiple_classes(num_problems_per_class=20):
 
         # Class 8 - OK
         {
-            "grid_size": 160, "n_customers": 83, "n_facilities": 41, "max_capacity": 100,
+            "grid_size": 160, "n_customers": 80, "n_facilities": 41, "max_capacity": 120,
             "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
-            "max_payload_s": 25, "max_payload_l": 60, "max_range_s": 160, "max_range_l": 260, "Ds": 200, 
+            "max_payload_s": 35, "max_payload_l": 60, "max_range_s": 200, "max_range_l": 300, "Ds": 200, 
             "Dl": 200, "package_weight_range": (5, 35)
         },
         # ~ 15 min solver time
