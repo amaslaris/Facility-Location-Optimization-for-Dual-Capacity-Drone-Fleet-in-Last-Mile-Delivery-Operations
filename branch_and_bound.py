@@ -1,6 +1,7 @@
 from gurobipy import Model, GRB
 from collections import deque
 import numpy as np
+import time
 
 # Reading problem instance from file 
 def read_problem_instance(file_path):
@@ -523,13 +524,18 @@ def branch_and_bound(model, ub, lb, integer_var, best_bound_per_depth, nodes_per
 
 if __name__ == "__main__":
 
-    problem_file = f"generated_problems/class_{1}/problem_instance_{2}.txt"
+    problem_file = f"generated_problems/class_{4}/problem_instance_{10}.txt"
     model = model_creation(problem_file)
 
     # Define bounds for variables
     lb = [0, 0]  # lower bounds for x and y
     ub = [GRB.INFINITY, GRB.INFINITY]  # upper bounds for x and y
     integer_var = [1, 1]  # both x and y are integers
+
+    # num_vars = model.NumVars
+    # lb = [var.LB for var in model.getVars()]
+    # ub = [var.UB for var in model.getVars()]
+    # integer_var = [var.VType in [GRB.INTEGER, GRB.BINARY] for var in model.getVars()]
 
     # Set global parameters
     nodes = 0
@@ -542,11 +548,16 @@ if __name__ == "__main__":
     best_bound_per_depth = [-np.inf] * 10
     nodes_per_depth = [2**i for i in range(10)]
 
+
+    BB_start_time = time.time()
     solutions, best_sol_idx, solutions_found = branch_and_bound(model= model, ub= ub, lb= lb, integer_var= integer_var, best_bound_per_depth= best_bound_per_depth,nodes_per_depth= nodes_per_depth)
+    BB_stop_time = time.time()
+    BB_elapsed = BB_stop_time - BB_start_time
 
     # Print results
     if solutions:
-        print(f"Best solution found: {solutions[best_sol_idx]}")
+        # print(f"Best solution found: {solutions[best_sol_idx]}")
         print(f"Number of solutions found: {solutions_found}")
+        print(f"B&B Time: {BB_elapsed}")
     else:
         print("No feasible solution found.")

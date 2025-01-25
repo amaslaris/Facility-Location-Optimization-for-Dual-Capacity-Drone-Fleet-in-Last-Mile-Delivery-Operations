@@ -3,8 +3,8 @@ import numpy as np
 import os
 
 # Random Seed for Reproducibility
-random.seed(54)
-np.random.seed(54)
+random.seed(999)
+np.random.seed(999)
 
 # Class to represent a point (either facility or customer)
 class Point:
@@ -141,20 +141,32 @@ def generate_and_save_multiple_classes(num_problems_per_class=20):
     # Define the settings for each class using dictionaries for better clarity
     class_settings = [
         # Class 1 - OK
+        # {
+        #     "grid_size": 10, "n_customers": 15, "n_facilities": 5, "max_capacity": 10,
+        #     "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 30), 
+        #     "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 20, 
+        #     "Dl": 20, "package_weight_range": (1, 30)
+        # },
+        {
+            "grid_size": 10, "n_customers": 5, "n_facilities": 2, "max_capacity": 10,
+            "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 30), 
+            "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 3, 
+            "Dl": 3, "package_weight_range": (1, 30)
+        },
+        # Less than 1 sec solver time
+
+        # Class 2 - OK
+        # {
+        #     "grid_size": 15, "n_customers": 20, "n_facilities": 30, "max_capacity": 20,
+        #     "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 20), 
+        #     "max_payload_s": 10, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 30, 
+        #     "Dl": 20, "package_weight_range": (1, 20)
+        # },
         {
             "grid_size": 10, "n_customers": 15, "n_facilities": 5, "max_capacity": 10,
             "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 30), 
             "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 20, 
             "Dl": 20, "package_weight_range": (1, 30)
-        },
-        # Less than 1 sec solver time
-
-        # Class 2 - OK
-        {
-            "grid_size": 15, "n_customers": 20, "n_facilities": 30, "max_capacity": 20,
-            "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 20), 
-            "max_payload_s": 10, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 30, 
-            "Dl": 20, "package_weight_range": (1, 20)
         },
         # ~ 5 sec solver time
 
