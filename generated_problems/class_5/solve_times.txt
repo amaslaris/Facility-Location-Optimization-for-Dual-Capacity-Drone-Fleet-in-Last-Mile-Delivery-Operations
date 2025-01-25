@@ -1,0 +1,39 @@
+Class 5, Problem 1:
+Total Time: 544.63 seconds
+Solver Time: 8.89 seconds
+
+Class 5, Problem 2:
+Total Time: 540.11 seconds
+Solver Time: 13.39 seconds
+
+Class 5, Problem 3:
+Total Time: 470.85 seconds
+Solver Time: 11.68 seconds
+
+Class 5, Problem 4:
+Total Time: 530.48 seconds
+Solver Time: 12.73 seconds
+
+Class 5, Problem 5:
+Total Time: 477.84 seconds
+Solver Time: 8.28 seconds
+
+Class 5, Problem 6:
+Total Time: 495.60 seconds
+Solver Time: 13.13 seconds
+
+Class 5, Problem 7:
+Total Time: 482.80 seconds
+Solver Time: 15.63 seconds
+
+Class 5, Problem 8:
+Total Time: 474.03 seconds
+Solver Time: 11.47 seconds
+
+Class 5, Problem 9:
+Total Time: 470.12 seconds
+Solver Time: 10.27 seconds
+
+Class 5, Problem 10:
+Total Time:  seconds
+Solver Time:  seconds

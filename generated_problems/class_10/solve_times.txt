@@ -1,0 +1,41 @@
+Class 7, Problem 1
+Total Time: 8346.87 seconds
+Solver time: 708.41 seconds
+
+Class 7, Problem 2
+Total Time: 8224.15 seconds
+Solver time: 664.43 seconds
+
+Class 7, Problem 3
+Total Time: 6176.27 seconds
+Solver time: 622.60 seconds
+
+Class 7, Problem 4
+Total Time: 8015.88 seconds
+Solver time: 671.48 seconds
+
+Class 7, Problem 5
+Total Time: 6096.17 seconds
+Solver time: 666.83 seconds
+
+Class 7, Problem 6
+Total Time: 6150.04 seconds
+Solver time: 654.38 seconds
+
+Class 7, Problem 7
+Total Time: 8575.86 seconds
+Solver time: 645.36 seconds
+
+Class 7, Problem 8
+Total Time: 9124.13 seconds
+Solver time: 686.55 seconds
+
+Class 10, Problem 9
+Total Time: 7882.92 seconds
+Solver time: 85.12 seconds
+
+Class 10, Problem 10
+Total Time: 7551.40 seconds
+Solver time: 66.24 seconds
+
+

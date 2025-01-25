@@ -3,8 +3,8 @@ import numpy as np
 import os
 
 # Random Seed for Reproducibility
-random.seed(999)
-np.random.seed(999)
+random.seed(996)
+np.random.seed(996)
 
 # Class to represent a point (either facility or customer)
 class Point:
@@ -140,16 +140,22 @@ def save_problem_to_disk(problem_instance, class_num, problem_num):
 def generate_and_save_multiple_classes(num_problems_per_class=20):
     # Define the settings for each class using dictionaries for better clarity
     class_settings = [
-        # Class 1 - OK
+        # Class 1 - OK1
+        # {
+        #     "grid_size": 10, "n_customers": 15, "n_facilities": 5, "max_capacity": 10,
+        #     "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 30), 
+        #     "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 20, 
+        #     "Dl": 20, "package_weight_range": (1, 30)
+        # },
         {
-            "grid_size": 10, "n_customers": 15, "n_facilities": 5, "max_capacity": 10,
+            "grid_size": 10, "n_customers": 3, "n_facilities": 2, "max_capacity": 10,
             "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 30), 
-            "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 20, 
-            "Dl": 20, "package_weight_range": (1, 30)
+            "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 2, 
+            "Dl": 2, "package_weight_range": (1, 30)
         },
         # Less than 1 sec solver time
 
-        # Class 2 - OK
+        # Class 2 - OK1
         {
             "grid_size": 15, "n_customers": 20, "n_facilities": 30, "max_capacity": 20,
             "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 20), 
@@ -158,7 +164,7 @@ def generate_and_save_multiple_classes(num_problems_per_class=20):
         },
         # ~ 5 sec solver time
 
-        # Class 3 - OK
+        # Class 3 - OK1
         {
             "grid_size": 20, "n_customers": 30, "n_facilities": 40, "max_capacity": 20,
             "fixed_cost_range": (10, 30), "var_cost_range_s": (5, 15), "var_cost_range_l" : (10, 25), 
@@ -167,7 +173,7 @@ def generate_and_save_multiple_classes(num_problems_per_class=20):
         },
         # ~ 10 sec solver time
 
-        # Class 4 - OK
+        # Class 4 - OK1
         {
             "grid_size": 40, "n_customers": 53, "n_facilities": 40, "max_capacity": 40,
             "fixed_cost_range": (1, 50), "var_cost_range_s": (1, 15), "var_cost_range_l" : (15, 25), 
@@ -176,7 +182,34 @@ def generate_and_save_multiple_classes(num_problems_per_class=20):
         },
         # ~ 20+ - 35 sec solver time
 
-        # Class 5 - OK
+        # Class 5 - OK1 - How does grid_size affect total time?
+        {
+            "grid_size": 80, "n_customers": 53, "n_facilities": 40, "max_capacity": 40,
+            "fixed_cost_range": (1, 50), "var_cost_range_s": (1, 15), "var_cost_range_l" : (15, 25), 
+            "max_payload_s": 30, "max_payload_l": 70, "max_range_s": 30, "max_range_l": 60, "Ds": 35, 
+            "Dl": 45, "package_weight_range": (5, 50)
+        },
+        # ~ 20+ - 35 sec solver time
+
+        # Class 6 - OK1 - How does grid_size affect total time?
+        {
+            "grid_size": 55, "n_customers": 53, "n_facilities": 40, "max_capacity": 40,
+            "fixed_cost_range": (1, 50), "var_cost_range_s": (1, 15), "var_cost_range_l" : (15, 25), 
+            "max_payload_s": 30, "max_payload_l": 70, "max_range_s": 30, "max_range_l": 60, "Ds": 35, 
+            "Dl": 45, "package_weight_range": (5, 50)
+        },
+        # ~ 20+ - 35 sec solver time
+
+        # Class 7 - OK1 - How does grid_size affect total time?
+        {
+            "grid_size": 70, "n_customers": 53, "n_facilities": 40, "max_capacity": 40,
+            "fixed_cost_range": (1, 50), "var_cost_range_s": (1, 15), "var_cost_range_l" : (15, 25), 
+            "max_payload_s": 30, "max_payload_l": 70, "max_range_s": 30, "max_range_l": 60, "Ds": 35, 
+            "Dl": 45, "package_weight_range": (5, 50)
+        },
+        # ~ 20+ - 35 sec solver time
+
+        # Class 8 - 
         {
             "grid_size": 80, "n_customers": 25, "n_facilities": 20, "max_capacity": 60,
             "fixed_cost_range": (1, 50), "var_cost_range_s": (1, 15), "var_cost_range_l" : (15, 25), 
@@ -185,7 +218,7 @@ def generate_and_save_multiple_classes(num_problems_per_class=20):
         },
         # ~ 1 min solver time
 
-        # Class 6 - OK
+        # Class 9 - 
         {
             "grid_size": 160, "n_customers": 70, "n_facilities": 40, "max_capacity": 80,
             "fixed_cost_range": (1, 40), "var_cost_range_s": (5, 15), "var_cost_range_l" : (10, 25), 
@@ -194,7 +227,7 @@ def generate_and_save_multiple_classes(num_problems_per_class=20):
         },
         # ~ 5 min solver time
          
-        # Class 7 - OK
+        # Class 10 - 
         {
             "grid_size": 160, "n_customers": 72, "n_facilities": 40, "max_capacity": 100,
             "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
@@ -203,32 +236,32 @@ def generate_and_save_multiple_classes(num_problems_per_class=20):
         },
         # ~ 10-11 min solver time
 
-        # Class 8 - OK
-        {
-            "grid_size": 160, "n_customers": 80, "n_facilities": 41, "max_capacity": 120,
-            "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
-            "max_payload_s": 35, "max_payload_l": 60, "max_range_s": 200, "max_range_l": 300, "Ds": 200, 
-            "Dl": 200, "package_weight_range": (5, 35)
-        },
-        # ~ 15 min solver time
+        # # Class 8 - OK
+        # {
+        #     "grid_size": 160, "n_customers": 80, "n_facilities": 41, "max_capacity": 120,
+        #     "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
+        #     "max_payload_s": 35, "max_payload_l": 60, "max_range_s": 200, "max_range_l": 300, "Ds": 200, 
+        #     "Dl": 200, "package_weight_range": (5, 35)
+        # },
+        # # ~ 15 min solver time
         
-        # Class 9 - OK
-        {
-            "grid_size": 160, "n_customers": 88, "n_facilities": 41, "max_capacity": 100,
-            "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
-            "max_payload_s": 25, "max_payload_l": 60, "max_range_s": 160, "max_range_l": 260, "Ds": 200, 
-            "Dl": 200, "package_weight_range": (5, 35)
-        },
-        # ~ 20 min solver time
+        # # Class 9 - OK
+        # {
+        #     "grid_size": 160, "n_customers": 88, "n_facilities": 41, "max_capacity": 100,
+        #     "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
+        #     "max_payload_s": 25, "max_payload_l": 60, "max_range_s": 160, "max_range_l": 260, "Ds": 200, 
+        #     "Dl": 200, "package_weight_range": (5, 35)
+        # },
+        # # ~ 20 min solver time
 
-        # Class 10 - OK
-        {
-            "grid_size": 200, "n_customers": 80, "n_facilities": 50, "max_capacity": 100,
-            "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
-            "max_payload_s": 25, "max_payload_l": 60, "max_range_s": 150, "max_range_l": 250, "Ds": 200, 
-            "Dl": 200, "package_weight_range": (5, 40)
-        }
-        # ~ 30 min solver time
+        # # Class 10 - OK
+        # {
+        #     "grid_size": 200, "n_customers": 80, "n_facilities": 50, "max_capacity": 100,
+        #     "fixed_cost_range": (1, 50), "var_cost_range_s": (5, 15), "var_cost_range_l": (10, 25), 
+        #     "max_payload_s": 25, "max_payload_l": 60, "max_range_s": 150, "max_range_l": 250, "Ds": 200, 
+        #     "Dl": 200, "package_weight_range": (5, 40)
+        # }
+        # # ~ 30 min solver time
     ]
 
     # Iterate over the class settings and generate problem instances
