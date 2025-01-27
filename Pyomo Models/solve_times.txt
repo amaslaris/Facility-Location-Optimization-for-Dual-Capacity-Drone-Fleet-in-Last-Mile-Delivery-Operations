@@ -5,8 +5,8 @@ Class 1, Problem 2: Infeasible
 Class 1, Problem 3: Infeasible
 
 Class 1, Problem 4:
-Total Time: 0.25 seconds
-Solver Time: 0.13 seconds
+Total Time: 0.24 seconds
+Solver Time: 0.20 seconds
 
 Class 1, Problem 5: Infeasible
 
@@ -19,22 +19,22 @@ Class 1, Problem 8: Infeasible
 Class 1, Problem 9: Infeasible
 
 Class 1, Problem 10:
-Total Time: 0.16 seconds
-Solver Time: 0.12 seconds
+Total Time: 0.24 seconds
+Solver Time: 0.18 seconds
 
 Class 1, Problem 11: Infeasible
 
 Class 1, Problem 12:
-Total Time: 0.22 seconds
-Solver Time: 0.18 seconds
+Total Time: 0.30 seconds
+Solver Time: 0.25 seconds
 
 Class 1, Problem 13: Infeasible
 
 Class 1, Problem 14: Infeasible
 
 Class 1, Problem 15:
-Total Time: 0.15 seconds
-Solver Time: 0.11 seconds
+Total Time: 0.22 seconds
+Solver Time: 0.18 seconds
 
 Class 1, Problem 16: Infeasible
 

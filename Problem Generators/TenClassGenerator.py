@@ -3,8 +3,8 @@ import numpy as np
 import os
 
 # Random Seed for Reproducibility
-random.seed(12)
-np.random.seed(12)
+random.seed(13)
+np.random.seed(13)
 
 # Class to represent a point (either facility or customer)
 class Point:
@@ -141,18 +141,19 @@ def generate_and_save_multiple_classes(num_problems_per_class=20):
     # Define the settings for each class using dictionaries for better clarity
     class_settings = [
         # Class 1 - OK
-        # {
-        #     "grid_size": 10, "n_customers": 15, "n_facilities": 5, "max_capacity": 10,
-        #     "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 30), 
-        #     "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 20, 
-        #     "Dl": 20, "package_weight_range": (1, 30)
-        # },
         {
-            "grid_size": 15, "n_customers": 8, "n_facilities": 5, "max_capacity": 10,
-            "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 20), 
-            "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 6, 
-            "Dl": 4, "package_weight_range": (1, 20)
+            "grid_size": 7, "n_customers": 3, "n_facilities": 2, "max_capacity": 10,
+            "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 30), 
+            "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 2, 
+            "Dl": 1, "package_weight_range": (1, 20)
         },
+        ### Extra class
+        # {
+        #     "grid_size": 15, "n_customers": 8, "n_facilities": 5, "max_capacity": 10,
+        #     "fixed_cost_range": (10, 20), "var_cost_range_s": (1, 10), "var_cost_range_l" : (10, 20), 
+        #     "max_payload_s": 15, "max_payload_l": 30, "max_range_s": 15, "max_range_l": 30, "Ds": 6, 
+        #     "Dl": 4, "package_weight_range": (1, 20)
+        # },
         # # Less than 1 sec solver time
 
         # Class 2 - OK
@@ -280,4 +281,6 @@ def generate_and_save_multiple_classes(num_problems_per_class=20):
             )
             save_problem_to_disk(problem_instance, class_num, problem_num)
 
-generate_and_save_multiple_classes()
+if __name__=="__main__":
+
+    generate_and_save_multiple_classes()
